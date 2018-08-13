@@ -13,6 +13,7 @@ Entity::Entity(
 	_angularFrequency = angularFrequency;
 
 }
+Entity::Entity() : Entity(glm::vec2(0, 0), glm::vec2(0, 0), 0, 0) {};
 Entity::Entity(glm::vec2 position) :Entity(position, glm::vec2(0, 0), 0.0, 0.0) {};
 Entity::Entity(glm::vec2 position, float orientation) : Entity(position, glm::vec2(0.0, 0.0), orientation, 0.0f) {};
 float Entity::getOrientation()const {
@@ -37,7 +38,7 @@ void Entity::update(const glm::vec2 acceleration, const float angularAcceleratio
 	_position += _velocity*deltaT;
 	_orientation += _angularFrequency*deltaT;
 	_velocity += acceleration*deltaT;
-	_angularFrequency = +angularAcceleration*deltaT;
+	_angularFrequency += angularAcceleration*deltaT;
 }
 
 void Entity::transform(glm::mat4 &transform)const {
