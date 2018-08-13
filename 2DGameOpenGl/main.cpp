@@ -185,7 +185,7 @@ int main()
 		// set the texture mix value in the shader
 		dt = glfwGetTime() - time;
 		box.update(glm::vec2(0, 0), angularAcceleration, dt);
-		glm::mat4 transform
+		glm::mat4 transform;
 		box.transform(transform);
 		
 		ourShader.setMat4("transform", transform);
