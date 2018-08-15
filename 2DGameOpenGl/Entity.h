@@ -18,6 +18,7 @@ public:
 		float orientation, 
 		float angularFrequnecy
 	);
+	Entity::Entity();
 	Entity(glm::vec2 position);
 	Entity(glm::vec2 position, float orientation);
 	float getOrientation()const;

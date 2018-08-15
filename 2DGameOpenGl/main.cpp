@@ -8,6 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "shader_m.h"
+#include "Entity.h"
 
 #include <iostream>
 
@@ -157,8 +158,8 @@ int main()
 	projection = glm::scale(glm::vec3(ratio, 1.0f, 1.0f));
 	float time = glfwGetTime();
 	float dt;
-	float angle = 0;
-	float angularFrequency = 0;
+	Entity box;
+	glm::mat4 transform;
 
 	// render loop
 	// -----------
@@ -183,10 +184,9 @@ int main()
 		ourShader.use();
 		// set the texture mix value in the shader
 		dt = glfwGetTime() - time;
-		angle += angularFrequency*dt;
-		angularFrequency += angularAcceleration*dt;
+		box.update(glm::vec2(0, 0), angularAcceleration, dt);
 		glm::mat4 transform;
-		transform = glm::rotate(transform, angle, glm::vec3(0.0f, 0.0f, 1.0f));
+		box.transform(transform);
 		
 		ourShader.setMat4("transform", transform);
 		ourShader.setMat4("projection", projection);
