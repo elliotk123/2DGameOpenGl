@@ -368,3 +368,8 @@ ASALocalRun/
 .localhistory/
 .vs/2DGameOpenGl/v15/.suo
 *.db
+*.pdb
+*.ilk
+2DGameOpenGl/Debug/vc141.pdb
+2DGameOpenGl/Debug/vc141.idb
+.vs/2DGameOpenGl/v15/.suo
