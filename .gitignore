@@ -363,3 +363,5 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+.vs/2DGameOpenGl/v15/.suo
+*.db
