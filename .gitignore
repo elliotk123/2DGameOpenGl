@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+*.ipch
+.vs/2DGameOpenGl/v15/ipch/AutoPCH/5212cc63aaf492a0/MAIN.ipch
+.vs/2DGameOpenGl/v15/Browse.VC.opendb
+.vs/2DGameOpenGl/v15/Browse.VC.db
+.vs/2DGameOpenGl/v15/ipch/AutoPCH/5212cc63aaf492a0/MAIN.ipch
