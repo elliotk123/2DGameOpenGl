@@ -41,6 +41,10 @@ void Entity::update(const glm::vec2 acceleration, const float angularAcceleratio
 	_angularFrequency += angularAcceleration*deltaT;
 }
 
+glm::vec2 Entity::getDirection()const {
+	return glm::vec2(glm::cos(_orientation), glm::sin(_orientation));
+}
+
 void Entity::transform(glm::mat4 &transform)const {
 	transform = glm::rotate(transform, _orientation, glm::vec3(0.0f, 0.0f, 1.0f));
 	transform = glm::translate(transform, glm::vec3(_position, 0.0f));

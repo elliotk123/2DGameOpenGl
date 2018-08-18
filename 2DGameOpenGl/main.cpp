@@ -22,6 +22,7 @@ const unsigned int SCR_HEIGHT = 768;
 // stores how much we're seeing of either texture
 float mixValue = 0.2f;
 float angularAcceleration = 0.0f;
+float thrust = 0.0f;
 
 int main()
 {
@@ -111,7 +112,7 @@ int main()
 	int width, height, nrChannels;
 	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 											// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-	unsigned char *data = stbi_load(("container.jpg"), &width, &height, &nrChannels, 0);
+	unsigned char *data = stbi_load(("spaceship.png"), &width, &height, &nrChannels, 0);
 	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -184,7 +185,7 @@ int main()
 		ourShader.use();
 		// set the texture mix value in the shader
 		dt = glfwGetTime() - time;
-		box.update(glm::vec2(0, 0), angularAcceleration, dt);
+		box.update(thrust*box.getDirection(), angularAcceleration, dt);
 		glm::mat4 transform;
 		box.transform(transform);
 		
@@ -233,6 +234,7 @@ void processInput(GLFWwindow *window)
 		if (mixValue <= 0.0f)
 			mixValue = 0.0f;
 	}
+	//rotation
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 	{
 		angularAcceleration = -0.1; // change this value accordingly (might be too slow or too fast based on system hardware)
@@ -243,6 +245,18 @@ void processInput(GLFWwindow *window)
 	}
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_RELEASE && glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_RELEASE) {
 		angularAcceleration = 0;
+	}
+	//translation
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+	{
+		thrust = -0.1; // change this value accordingly (might be too slow or too fast based on system hardware)
+	}
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+	{
+		thrust = 0.1; // change this value accordingly (might be too slow or too fast based on system hardware)
+	}
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_RELEASE && glfwGetKey(window, GLFW_KEY_S) == GLFW_RELEASE) {
+		thrust = 0;
 	}
 }
 
