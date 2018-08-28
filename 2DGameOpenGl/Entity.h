@@ -29,6 +29,7 @@ public:
 	void setAngularFrequency(const float angularFrequency);
 	void update(const glm::vec2 acceleration, const float angularAcceleration, const float deltaT);
 	void transform(glm::mat4 &transform)const;
+	glm::vec2 Entity::getDirection()const;
 };
 	
 #endif 
